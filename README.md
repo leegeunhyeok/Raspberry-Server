@@ -5,10 +5,10 @@
 > - Developer: Leegeunhyeok
 > - E-Mail: lghlove0509@naver.com
 > - Project Start date : 2017-11-02
+---
+<br>  
 
-
-<br>
-## ChangeLog ##
+## ChangeLog
 
 - 2017-11-12
 	1. Password encryption
@@ -29,11 +29,11 @@
 	1. Project start
 	
 ---
-
 <br>
-- Start command 
+  
+### Start command 
 <pre><code> $ node app.js </code></pre>
 
 <br>
-- Node modules
+### Node modules
 <pre> Check "package.json" file </pre>
