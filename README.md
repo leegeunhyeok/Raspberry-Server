@@ -9,6 +9,10 @@
 
 > **ChangeLog:**
 
+> - 2017-11-12
+	1. Password encryption
+	2. Split file (user-schema) 
+> <br>
 > - 2017-11-08
 	1. Use database (MongoDB)
 	2. User register

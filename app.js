@@ -57,12 +57,12 @@ function connectDB() {
     });
     
     database.on('open', function(){
-        console.log('DB Connected (' + databaseUrl + ')');
+        console.log('Database Connected (' + databaseUrl + ')');
         createUserSchema();
     });
     
     database.on('disconnection', function(){
-        console.log('Database was disconnected.\nReconnecting.. (Wait 5 sec)'); 
+        console.log('Database was disconnected\nReconnecting.. (Wait 5 sec)'); 
         setInterval(connectDB, 5 * 1000); // 5 sec after
     });
 };
