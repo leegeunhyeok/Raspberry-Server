@@ -21,7 +21,10 @@ var cookieParser = require('cookie-parser'),
 
 var mongoose = require('mongoose');
 
+var chat = require('./app/chat.js');
+
 var app = express();
+var server;
 
 app.set('port', 8080);
 app.set('views', __dirname + '/views');
@@ -232,21 +235,21 @@ router.route('/profile').get(function(req, res){
     }
 });
 
-router.route('/session').get(function(req, res){
-	if(req.session.user){
-		res.writeHead(200, {'Content-Type':'text/html'});
-		res.write('User: ' + req.session.user.name);
-		res.end();
+router.route('/chat').get(function(req, res){
+    var sess = req.session.user;
+    var userData = sess != null ? {name: sess.name, id: sess.id} : null;
+    
+	if(sess){
+        res.render('chat', userData);
 	} else {
-		res.writeHead(200, {'Content-Type':'text/html'});
-		res.write('No Session');
-		res.end();
+		res.send("<script>alert('로그인 후 다시 시도해주세요');location.href='/'</script>");
 	}
 });
 
 app.use(router);
 
-http.createServer(app).listen(app.get('port'), function(){
+server = http.createServer(app).listen(app.get('port'), function(){
 	console.log('Raspberry PI Server starting at [%d] port', app.get('port'));
     connectDB();
+    chat(server);
 });

@@ -1,0 +1,59 @@
+@import url(http://fonts.googleapis.com/earlyaccess/hanna.css);
+
+body {
+    font-family: 'Hanna', serif;
+}
+
+.no-padding {
+    padding: 0;
+}
+
+#list-btn {
+    float: right;
+}
+
+.name {
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+.message {
+    background-color: #eeeeee;
+    border-radius: 20px;
+    display:inline-block;
+    padding: 12px;
+    margin-left: 10px;
+}
+
+.user-list-wrap {
+    padding: 5%;
+}
+
+.connect-message {
+    margin: auto;
+    background-color: #baffc9;
+    border-radius: 10px;
+}
+
+.disconnect-message {
+    margin: auto;
+    background-color: #ffb3ba;
+    border-radius: 10px;
+}
+
+.bottom {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+}
+
+#text-area{
+    width: 78%;
+    margin: 3px;
+}
+
+#send-btn{
+    float: right;
+    width: 20%;
+}

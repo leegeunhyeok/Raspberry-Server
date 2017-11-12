@@ -11,6 +11,10 @@
 ## ChangeLog
 
 ### 2017-11-12
+* Add user chat 
+
+
+### 2017-11-12
 * Password encryption
 * Split file (user-schema) 
 

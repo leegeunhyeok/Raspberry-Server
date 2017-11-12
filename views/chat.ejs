@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+        <title>Rastro 채팅방</title>
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/chat.css" rel="stylesheet">
+        <script src="/socket.io/socket.io.js"></script>
+    </head>
+    <body>
+        <div class="container-fluid">
+            <div class="row"> 
+                <div class="no-padding">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <button class="btn btn-defualt" id="back-btn">&lt;</button>
+                            <button class="btn btn-defualt" id="list-btn" data-toggle="modal" data-target="#list">&#61;</button>
+                            <!-- Modal -->
+                            <div id="list" class="modal fade" role="dialog">
+                                <div class="modal-dialog">
+                                    <!-- Modal content-->
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            <h4 class="modal-title text-center">접속자 목록</h4>
+                                        </div>
+                                        <div class="user-list-wrap">
+                                            <ul class="list-group" id="users">
+                                                <!-- User list -->
+                                            </ul>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel-body" id="conversation">
+                            
+                        </div>
+                    </div>
+                    <div class="bottom">  
+                        <input type="text" id="text-area">
+                        <button class="btn btn-warning btn-md" id="send-btn">전송</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        
+        
+        <div id="name"><%= name %></div>
+        <div id="id"><%= id %></div>
+        <div style="float:left;width:100px;border-right:1px solid black;height:300px;padding:10px;overflow:scroll-y;">
+            <b>접속자</b>
+            <div id="users"></div>
+        </div>
+        <script src="js/jquery-3.2.1.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/chat.js"></script>
+    </body>
+</html>
