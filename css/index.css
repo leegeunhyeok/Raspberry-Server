@@ -1,0 +1,91 @@
+@import url(http://fonts.googleapis.com/earlyaccess/hanna.css);
+
+body {
+    font-family: 'Hanna', serif;
+}
+
+@media (min-width: 768px) {
+    body {
+        font-size: 14px;
+    }
+    
+    #my-name {
+        font-size: 10px;
+    }
+    
+    .info-area {
+        margin-left: 5%;
+        margin-right: 5%;
+    }
+}
+
+@media (min-width: 992px) {
+    body {
+        font-size: 18px;
+    }
+    
+    #my-name {
+        font-size: 18px;
+    }
+    
+    .info-area {
+        margin-left: 20%;
+        margin-right: 20%;
+    }
+}
+
+@media (min-width: 1200px) {
+    body {
+        font-size: 18px;
+    }
+    
+    #my-name {
+        font-size: 20px;
+    }
+    
+    .info-area {
+        margin-left: 30%;
+        margin-right: 30%;
+    }
+}
+
+.font-hanna {	
+    font-family: 'Hanna', serif;
+}
+
+.btn-group {
+    margin-top: 20px;
+}
+
+.more-info {
+    margin-bottom: 10px;
+}
+
+#top-menu {
+    margin-bottom: 10px;
+}
+    
+#footer-info {
+    font-size: 12px;
+}
+
+.bg-1 {
+    background-color: #ffb3ba;
+}
+
+.bg-2 {
+    background-color: #ffffba;
+}
+
+.bg-3 {
+    background-color: #baffc9;
+}
+
+.bg-4 {
+    background-color: #bae1ff;
+}
+
+.bg-5 {
+    background-color: #37474f;
+    color: white;
+}
