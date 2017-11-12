@@ -7,30 +7,33 @@
 > - Project Start date : 2017-11-02
 
 
-> **ChangeLog:**
+<br>
+## ChangeLog ##
 
-> - 2017-11-12
+- 2017-11-12
 	1. Password encryption
 	2. Split file (user-schema) 
-> <br>
-> - 2017-11-08
+
+- 2017-11-08
 	1. Use database (MongoDB)
 	2. User register
 	3. User login / logout
-> <br>
-> - 2017-11-07
+
+- 2017-11-07
 	1. First commit
 	2. Use view engine (ejs)
 	3. Router setting
 	4. Cookie and session setting
-> <br>
-> - 2017-11-02
+
+- 2017-11-02
 	1. Project start
 	
-<br>
+---
 
+<br>
 - Start command 
 <pre><code> $ node app.js </code></pre>
 
+<br>
 - Node modules
-> Check "package.json" file
+<pre> Check "package.json" file </pre>
