@@ -10,6 +10,12 @@
 
 ## ChangeLog
 
+### 2017-11-14
+* User chat fix(Layout, js)
+* Add main content (title, image)
+* Add more info
+
+
 ### 2017-11-12
 * Add user chat 
 

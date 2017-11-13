@@ -4,7 +4,7 @@ module.exports = function(server){
     
     io.sockets.on('connection', function(socket){
         socket.on('send', function(data){
-            io.sockets.emit('update', socket.name, data);
+            io.sockets.emit('update', socket.name, socket.id, data);
         }); 
         
         socket.on('adduser', function(info){
@@ -13,8 +13,7 @@ module.exports = function(server){
             socket.name = name;
             socket.id = id;
             userlist[id] = name;
-            socket.emit('update', 'SERVER', '접속 됨');
-            socket.broadcast.emit('update', 'SERVER', name + '(' + id + ') 님이 접속하였습니다.');
+            io.sockets.emit('update', 'SERVER', 'SERVER_CONNECT', name + '(' + id + ') 님이 접속하였습니다.');
             io.sockets.emit('update-users', userlist);
             console.log(name + '(' + id + ')' + ' has connected');
         });
@@ -22,7 +21,8 @@ module.exports = function(server){
         socket.on('disconnect', function(){
             delete userlist[socket.id];
             io.sockets.emit('update-users', userlist);
-            socket.broadcast.emit('update', 'SERVER', socket.name + '(' + socket.id + ') 님이 연결을 종료하였습니다.');
+            socket.broadcast.emit('update', 'SERVER', 'SERVER_DISCONNECT', 
+            socket.name + '(' + socket.id + ') 님이 연결을 종료하였습니다.');
             console.log(socket.name + '(' + socket.id + ')' + ' was disconnected');
         })
     });

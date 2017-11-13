@@ -227,9 +227,23 @@ router.route('/process/addUser').post(function(req, res){
     }
 });
 
+/* ID Check */
+router.route('/private/addAdmin').get(function(req, res){
+    fs.readFile('public/private.html', function(err, data){
+        res.writeHead(200, {'Content-Type':'text/html'});
+        if(err){
+            res.write('<h1>서버에 문제가 발생하였습니다.</h1><br><h4>나중에 다시 시도해주세요</h4>');
+        } else {
+            res.write(data);
+        }
+        res.end();
+    });
+});
+
 router.route('/profile').get(function(req, res){
     if(req.session.user){
         //res.redirect('/public/profile.html'); ejs 
+        res.end();
     } else {
         res.redirect('/');
     }
@@ -237,9 +251,8 @@ router.route('/profile').get(function(req, res){
 
 router.route('/chat').get(function(req, res){
     var sess = req.session.user;
-    var userData = sess != null ? {name: sess.name, id: sess.id} : null;
-    
-	if(sess){
+	if(sess) {
+        var userData = sess != null ? {name: sess.name, id: sess.id} : null;
         res.render('chat', userData);
 	} else {
 		res.send("<script>alert('로그인 후 다시 시도해주세요');location.href='/'</script>");

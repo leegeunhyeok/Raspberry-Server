@@ -3,6 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+        <meta name="description" content="라즈베리파이로 구동중인 웹 서버">
         <title>Rastro</title>
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="css/index.css" rel="stylesheet">
@@ -68,17 +69,29 @@
                     <div class="panel-body">
                         <div class="tab-content">
                             <div id="home" class="tab-pane fade in active text-center">
-                                <div class="panel panel-default col-lg-3 col-md-6 col-sm-12 bg-1">
-                                    콘텐츠 추가 예정
+                                <div class="main-panel col-lg-3 col-md-6 col-sm-12">
+                                    <div id="chat-btn" class="panel panel-default hover bg-1">
+                                        <img src="image/chat.png">
+                                        <p>채팅하기</p>
+                                    </div>
                                 </div>
-                                <div class="panel panel-default col-lg-3 col-md-6 col-sm-12 bg-2">
-                                    콘텐츠 추가 예정
+                                <div class="main-panel col-lg-3 col-md-6 col-sm-12">
+                                    <div id="blog-btn" class="panel panel-default hover bg-2">
+                                        <img src="image/blog.png">
+                                        <p>블로그</p>
+                                    </div>
                                 </div>
-                                <div class="panel panel-default col-lg-3 col-md-6 col-sm-12 bg-3">
-                                    콘텐츠 추가 예정
+                                <div class="main-panel col-lg-3 col-md-6 col-sm-12">
+                                    <div id="file-btn" class="panel panel-default hover bg-3">
+                                        <img src="image/file.png">
+                                        <p>파일 공유</p>
+                                    </div>
                                 </div>
-                                <div class="panel panel-default col-lg-3 col-md-6 col-sm-12 bg-4">
-                                    콘텐츠 추가 예정
+                                <div class="main-panel col-lg-3 col-md-6 col-sm-12">
+                                    <div id="portfolio-btn" class="panel panel-default hover bg-4">
+                                        <img src="image/my.png">
+                                        <p>포트폴리오</p>
+                                    </div>
                                 </div>
                             </div>
                             <div id="info" class="tab-pane fade">
@@ -88,6 +101,20 @@
                                     <a href="https://www.raspberrypi.org/"><img src="image/raspberry.png" title="Raspberry PI"></a>
                                     <br>
                                     <br>
+                                    <div>
+                                        <p>
+                                            본 서버는 <u>라즈베리파이 3</u> 모델로 구동중인 웹 서버입니다.<br>
+                                            상업적인 웹 페이지가 아니며 추후에 포트폴리오로<br>
+                                            사용 할 목적으로 프로젝트를 시작하게 되었습니다.<br>
+                                            <br>
+                                            소스코드 및 리소스 데이터들은 모두 
+                                            <a href="https://github.com/leegeunhyeok/Raspberry-Server" title="leegeunhyeok">GitHub</a>
+                                            에 업로드 되고 있습니다.<br>
+                                            <br>
+                                            문의사항은 <u>lghlove0509@naver.com</u> 로 보내주세요.<br>
+                                            감사합니다.
+                                        </p>
+                                    </div>
                                     <button data-toggle="collapse" data-target="#more-info" class="btn btn-lg">정보 더 보기</button>
                                 </center>
                                 <div id="more-info" class="collapse text-center">
@@ -117,7 +144,7 @@
                                                     </h4>
                                                 </div>
                                                 <div class="panel-footer">
-                                                    <h4>본 서버는 <b>Raspberry PI 3</b> 으로 구동되고 있습니다</h4>
+                                                    <h4>Database - MongoDB</h4>
                                                 </div>
                                             </div>
                                         </div>       

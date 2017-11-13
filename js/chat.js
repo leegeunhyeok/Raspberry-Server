@@ -1,14 +1,24 @@
 var socket = io();
+var name;
+var id;
 
 socket.on('connect', function(){
-    var name = $('#name').html();
-    var id = $('#id').html();
-    console.log(name + ' / ' + id);
+    name = $('#name').html();
+    id = $('#id').html();
     socket.emit('adduser', {name: name, id: id}); 
 });
 
-socket.on('update', function(name, data){
-    $('#conversation').append('<div><div class="name">' + name + '</div><div class="message">' + data + '</div></div><br>');
+socket.on('update', function(name, _id, data){
+    if(id == _id) {
+        $('#conversation').append('<div><div class="my-message">' + data + '</div></div><br><br><br>');
+    } else if(_id == 'SERVER_CONNECT') {
+        $('#conversation').append('<div><div class="connect-message margin text-center">' + data + '</div></div><br>');
+    } else if(_id == 'SERVER_DISCONNECT') {
+        $('#conversation').append('<div><div class="disconnect-message margin text-center">' + data + '</div></div><br>')
+    } else {
+        $('#conversation').append('<div><div class="name">' + name + '</div><div class="message">' + data + '</div></div><br>');
+    }
+    $('html, body').scrollTop(document.body.scrollHeight);
 });
 
 socket.on('update-users', function(list){
@@ -19,16 +29,22 @@ socket.on('update-users', function(list){
 });
 
 $(function(){
+    $('#back-btn').click(function(){
+        location.href = '/'; 
+    });
+    
     $('#send-btn').click(function(){
         var msg = $('#text-area').val();
+        if(msg == '') return;
         $('#text-area').val('');
         socket.emit('send', msg);
+        $('#text-area').focus();
     });
     
     $('#text-area').keypress(function(event){
         if(event.which == 13){
-            $(this).blur();
             $('#send-btn').focus().click();
+            $(this).focus();
         }
-    })
+    });
 });
