@@ -10,6 +10,12 @@
 
 ## ChangeLog
 
+### 2017-11-15
+* Add Mypage
+* Change password
+* Delete account
+* Text problem fix
+
 ### 2017-11-14
 * User chat fix(Layout, js)
 * Add main content (title, image)

@@ -124,6 +124,33 @@ var addUser = function(db, id, password, name, permission, callback) {
     });
 };
 
+/* Change password */
+var changePassword = function(db, id, password, callback) {
+    userModel.findOne({'id':id}, function(err, user){
+        if(err) {
+            throw err;
+        }
+        
+        user.password = password;
+        user.save(function(err){
+            if(err) {
+                callback(false);
+            } 
+            callback(true);
+        }); 
+    }); 
+}
+
+var deleteAccount = function(db, id, callback) {
+    userModel.remove({'id':id}, function(err){
+        if(err) {
+            callback(false);
+        } else {
+            callback(true);
+        }
+    });
+}
+
 
 /*--- Router Setting ---*/
 var router = express.Router();
@@ -227,6 +254,45 @@ router.route('/process/addUser').post(function(req, res){
     }
 });
 
+/* Change password */
+router.route('/process/change').post(function(req, res){
+    var ps1 = req.body.password1;
+    var ps2 = req.body.password2;
+    var id = req.body.id;
+	
+    if(ps1 != ps2){
+        res.send("<script>alert('입력한 비밀번호가 일치하지 않습니다.');location.href='/profile'</script>");
+    }
+    
+    if(database){
+        changePassword(database, id, ps1, function(result){
+            if(result){
+                res.send("<script>alert('비밀번호가 변경되었습니다.');location.href='/'</script>");
+            } else {
+                res.send("<script>alert('비밀번호 변경 실패');location.href='/'</script>");
+            }
+        }); 
+    }
+});
+
+
+/* Delete account */
+router.route('/process/delete').post(function(req, res){
+    var id = req.body.id;
+    
+    if(database){
+        deleteAccount(database, id, function(result){
+            if(result){
+                req.session.destroy();
+                res.send("<script>alert('정상적으로 탈퇴되었습니다.');location.href='/'</script>");
+            } else {
+                res.send("<script>alert('탈퇴 도중 문제가 발생하였습니다.');location.href='/'</script>");
+            }
+        }); 
+    }
+});
+
+
 /* ID Check */
 router.route('/private/addAdmin').get(function(req, res){
     fs.readFile('public/private.html', function(err, data){
@@ -241,9 +307,12 @@ router.route('/private/addAdmin').get(function(req, res){
 });
 
 router.route('/profile').get(function(req, res){
-    if(req.session.user){
-        //res.redirect('/public/profile.html'); ejs 
-        res.end();
+    var sess = req.session.user;
+    
+    if(sess){ 
+	    var userName = sess.name;
+        var id = sess.id;
+	    res.render('profile', {name: userName, id: id});
     } else {
         res.redirect('/');
     }

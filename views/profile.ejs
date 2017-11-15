@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+        <meta name="description" content="라즈베리파이로 구동중인 웹 서버">
+        <title>Rastro 내 정보</title>
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/profile.css" rel="stylesheet">
+    </head>
+    <body>
+        <div class="container">
+            <center>
+                <img src="image/logo.png">
+            </center>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="text-center">내 정보</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="text-center">
+                        <b>[ 이름 ]</b> 
+                        <div class="text-info"><%= name %></div>
+                        <br>
+                        <b>[ 이메일 ]</b>
+                        <div class="text-info"><%= id %></div>
+                        <br>
+                        <button type="button" class="btn btn-info" data-toggle="modal" data-target="#change">비밀번호 변경</button>
+                        <button type="button" class="btn btn-danger" data-toggle="collapse" data-target="#last-check">회원탈퇴</button>
+                        <button type="button" id="main-btn" class="btn btn-default">메인으로</button>
+                        <div id="last-check" class="collapse text-center ">
+                            <h4 class="text-danger">정말로 탈퇴하시겠습니까?</h4>
+                            <form method="post" action="/process/delete">
+                                <input type="hidden" name="id" value="<%= id %>">
+                                <button type="submit" class="btn btn-danger">탈퇴</button>
+                            </form>
+                        </div>
+                    </div>
+                    <div id="change" class="modal fade" role="dialog">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-body">
+                                    <form action="/process/change" method="post">
+                                        <input type="hidden" name="id" value="<%= id %>">
+                                        <div class="form-group">
+                                            <label for="password">비밀번호</label>
+                                            <input type="password" id="first" class="form-control" name="password1" placeholder="영문, 숫자 6~14">
+                                        </div>
+                                        <h5 id="check-text"></h5>
+                                        <div class="form-group">
+                                            <label for="password">비밀번호 재 입력</label>
+                                            <input type="password" id="second" class="form-control" name="password2" placeholder="한번 더 입력해주세요">
+                                        </div>
+                                        <h5 id="same-text"></h5>
+                                        <div class="text-center">
+                                            <button type="submit" id="change-btn" class="btn btn-warning" disabled="true">변경하기</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="js/jquery-3.2.1.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/profile.js"></script>
+    </body>
+</html>

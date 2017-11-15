@@ -62,7 +62,7 @@ $(function(){
             passwordCheck = false;
             resultPwd.removeClass('text-success');
             resultPwd.addClass('text-danger');
-            resultPwd.html('사용 수 없습니다');
+            resultPwd.html('사용할 수 없습니다');
         }
         
         checkAll();
