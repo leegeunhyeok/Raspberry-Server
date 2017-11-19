@@ -31,7 +31,7 @@ $(function(){
     });
     
     $('#file-btn').click(function(){
-        location.href = '/files';
+        location.href = '/share';
     });
     
     $('#portfolio-btn').click(function(){

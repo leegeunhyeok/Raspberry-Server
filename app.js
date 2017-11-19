@@ -13,11 +13,14 @@ var express = require('express'),
 var path = require('path'),
 	fs = require('fs'),
 	static = require('serve-static'),
-	bodyParser = require('body-parser');
+    date = require('date-utils');
 
 var cookieParser = require('cookie-parser'),
-	session = require('express-session'),
-    crypto = require('crypto');
+    bodyParser = require('body-parser'),
+	session = require('express-session');
+
+var crypto = require('crypto'),
+    multer = require('multer');
 
 var mongoose = require('mongoose');
 
@@ -34,6 +37,7 @@ app.use('/js', static(path.join(__dirname, 'js')));
 app.use('/css', static(path.join(__dirname, 'css')));
 app.use('/image', static(path.join(__dirname, 'image')));
 app.use('/public', static(path.join(__dirname, 'public')));
+app.use('/files', static(path.join(__dirname, 'files')));
 
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({extended: false}));
@@ -43,6 +47,25 @@ app.use(session({
 	resave: false,
 	saveUninitialized: true
 }));
+
+var storage = multer.diskStorage({
+    destination: function (req, file, callback) {
+        callback(null, './files/');
+    }, 
+    filename: function (req, file, callback) {
+        var now = new Date();
+        var format = now.toFormat('YYYYMMDD_HH24MISS');
+        callback(null, format + '_' + file.originalname);
+    }
+});
+
+var upload = multer({
+    storage: storage,
+    limits: {
+        files: 1,
+        fileSize: 1024 * 1024 * 5 // Max size : 5MB
+    }
+});
 
 var database, userSchema, userModel;
 
@@ -293,6 +316,18 @@ router.route('/process/delete').post(function(req, res){
 });
 
 
+/* File upload */
+router.route('/process/upload').post(upload.array('file', 1), function(req, res){
+    var file = req.files;
+    if(file){   
+        console.log('[%s] uploaded', file[0].filename);
+        res.send("<script>alert('업로드가 완료되었습니다.');location.href='/share'</script>");
+    } else {
+        res.send("<script>alert('업로드 실패');location.href='/share'</script>");
+    }
+});
+
+
 /* ID Check */
 router.route('/private/addAdmin').get(function(req, res){
     fs.readFile('public/private.html', function(err, data){
@@ -326,6 +361,25 @@ router.route('/chat').get(function(req, res){
 	} else {
 		res.send("<script>alert('로그인 후 다시 시도해주세요');location.href='/'</script>");
 	}
+});
+
+router.route('/blog').get(function(req, res){
+    res.send("<script>alert('아직 구현되지 않은 페이지 입니다.');location.href='/'</script>");
+});
+
+router.route('/share').get(function(req, res){
+    var sess = req.session.user;
+	var userName = sess != null ? sess.name : null;
+    var dir = './files';
+    
+    fs.readdir(dir, function(err, list){ 
+        if(err) throw err; 
+        res.render('share', {name: userName, files: list});
+    });
+});
+
+router.route('/portfolio').get(function(req, res){
+    res.send("<script>alert('아직 구현되지 않은 페이지 입니다.');location.href='/'</script>");
 });
 
 app.use(router);

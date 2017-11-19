@@ -10,6 +10,10 @@
 
 ## ChangeLog
 
+### 2017-11-19
+* Add file share
+* Upload and Download available now
+
 ### 2017-11-15
 * Add Mypage
 * Change password

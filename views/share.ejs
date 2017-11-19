@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+        <title>파일공유</title>
+        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/join.css" rel="stylesheet">
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+                <a href="/"><img src="image/logo.png"></a>
+            </div>
+            <div class="row">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <div class="text-center">
+                            <% if(name) { %>
+                            <button class="btn btn-default" data-toggle="collapse" data-target="#upload">업로드</button>
+                            <div id="upload" class="collapse">
+                                <h4 class="text-danger">파일용량: 최대 5MByte</h4>
+                                <form method="post" action="/process/upload" enctype="multipart/form-data">
+                                    <input type="file" name="file">
+                                    <button type="submit" class="btn btn-success">업로드</button>
+                                </form>
+                            </div>
+                            <% } else { %>
+                            <h4 class="text-danger">파일을 업로드하려면 로그인해주세요</h4>
+                            <% } %>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>파일명</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% for(var i=0; i<files.length; i++){ 
+                                var temp = files[i] 
+                                var dir = '/files/' + temp %>
+                                <tr>
+                                    <td> <%= i+1 %> </td>
+                                    <td> <a href="<%= dir %>" download> <%= temp %> </a> </td>
+                                </tr> 
+                                <% } %>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="js/jquery-3.2.1.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+    </body>
+</html>
