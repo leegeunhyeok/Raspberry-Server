@@ -10,7 +10,11 @@ $(function(){
     });
     
     $('#mypage-btn').click(function(){
-         location.href = '/profile';
+        location.href = '/profile';
+    });
+    
+    $('#monitor-btn').click(function(){
+         location.href = '/admin';
     });
     
     $('form').submit(function(){
@@ -24,10 +28,6 @@ $(function(){
     
     $('#chat-btn').click(function(){
         location.href = '/chat';
-    });
-    
-    $('#blog-btn').click(function(){
-        location.href = '/blog';
     });
     
     $('#file-btn').click(function(){

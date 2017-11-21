@@ -24,7 +24,7 @@ var crypto = require('crypto'),
 
 var mongoose = require('mongoose');
 
-var chat = require('./app/chat.js');
+var socket = require('./app/socket');
 
 var app = express();
 var server;
@@ -38,6 +38,8 @@ app.use('/css', static(path.join(__dirname, 'css')));
 app.use('/image', static(path.join(__dirname, 'image')));
 app.use('/public', static(path.join(__dirname, 'public')));
 app.use('/files', static(path.join(__dirname, 'files')));
+app.use('/c3', static(path.join(__dirname, 'js/c3')));
+app.use('/d3', static(path.join(__dirname, 'js/d3')));
 
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({extended: false}));
@@ -181,8 +183,11 @@ var router = express.Router();
 /* Home */
 router.route('/').get(function(req, res){
 	var sess = req.session.user;
-	var userName = sess != null ? sess.name : null;
-	res.render('index', {name: userName});
+    if(sess){
+        var userName = sess != null ? sess.name : null;
+        var permission = sess.permission == 'admin' ? true : false;
+    }
+	res.render('index', {name: userName, permission: permission});
 });
 
 /* Login */
@@ -201,10 +206,18 @@ router.route('/process/login').post(function(req, res){
             if(docs) {
                 var id = docs[0].id;
                 var name = docs[0].name;
-                console.log('Hello, [%s]', name);
+                var permission = docs[0].permission;
+                
+                if(permission == 'admin'){
+                    console.log('Hello admin, [%s]', name);
+                } else {
+                    console.log('Hello, [%s]', name);
+                }
+                
                 req.session.user = {
                     id: id,
                     name: name,
+                    permission: permission, 
                     authorized: true
                 };
                 res.redirect('/');
@@ -327,7 +340,6 @@ router.route('/process/upload').post(upload.array('file', 1), function(req, res)
     }
 });
 
-
 /* ID Check */
 router.route('/private/addAdmin').get(function(req, res){
     fs.readFile('public/private.html', function(err, data){
@@ -363,10 +375,6 @@ router.route('/chat').get(function(req, res){
 	}
 });
 
-router.route('/blog').get(function(req, res){
-    res.send("<script>alert('아직 구현되지 않은 페이지 입니다.');location.href='/'</script>");
-});
-
 router.route('/share').get(function(req, res){
     var sess = req.session.user;
 	var userName = sess != null ? sess.name : null;
@@ -382,10 +390,29 @@ router.route('/portfolio').get(function(req, res){
     res.send("<script>alert('아직 구현되지 않은 페이지 입니다.');location.href='/'</script>");
 });
 
+router.route('/admin').get(function(req, res){
+    var sess = req.session.user;
+    var permission = sess.permission;
+    
+    if(permission == 'admin'){
+        fs.readFile('public/admin.html', function(err, data){
+            res.writeHead(200, {'Content-Type':'text/html'});
+            if(err){
+                res.write('<h1>서버에 문제가 발생하였습니다.</h1><br><h4>나중에 다시 시도해주세요</h4>');
+            } else {
+                res.write(data);
+            }
+            res.end();
+        });
+    } else {
+        res.send("<script>alert('액세스 거부');location.href='/'</script>");
+    }
+});
+
 app.use(router);
 
 server = http.createServer(app).listen(app.get('port'), function(){
 	console.log('Raspberry PI Server starting at [%d] port', app.get('port'));
     connectDB();
-    chat(server);
+    socket(server);
 });

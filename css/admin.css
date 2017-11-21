@@ -1,0 +1,10 @@
+@import url(http://fonts.googleapis.com/earlyaccess/hanna.css);
+
+body {
+    font-family: 'Hanna', serif;
+}
+
+#status {
+    margin: auto;
+    width: 75%;
+}

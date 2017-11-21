@@ -10,6 +10,12 @@
 
 ## ChangeLog
 
+### 2017-11-21
+* Add admin page (Server monitoring)
+* Use C3(D3)
+* Add blog link (tistory, naver)
+* Minor bug fix
+
 ### 2017-11-19
 * Add file share
 * Upload and Download available now
