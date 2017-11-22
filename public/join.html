@@ -10,7 +10,7 @@
     <body>
         <div class="container">
             <div class="row">
-                <img src="image/logo.png">
+                <a href="/"><img src="image/logo.png"></a>
             </div>
             <div class="row">
                 <div class="panel panel-default">
@@ -27,7 +27,21 @@
                                 <div id="check-name"></div>
                             </div>
                             <div class="form-group add-margin">
-                                <label for="id" class="text-warning">이메일</label>
+                                <label for="age" class="text-warning">나이</label>
+                                <input type="number" class="form-control" id="input-age" name="age">
+                                <div id="check-age"></div>
+                            </div>
+                            <div class="form-group add-margin">
+                                <label for="sex" class="text-success">성별</label>
+                                <br>
+                                <select name="sex" class="form-control">
+                                    <option value="0">남</option>
+                                    <option value="1">여</option>
+                                    <option value="-1">기타</option>
+                                </select>
+                            </div>
+                            <div class="form-group add-margin">
+                                <label for="id" class="text-info">이메일</label>
                                 <input type="email" class="form-control" id="input-id" name="id" placeholder="E-Mail">
                                 <div class="check-btn-area">
                                     <button type="button" class="btn btn-xs" disabled="true" id="id-check">중복확인</button>
@@ -35,7 +49,7 @@
                                 </div>                        
                             </div>
                             <div class="form-group add-margin">
-                                <label for="pwd" class="text-info">비밀번호</label>
+                                <label for="pwd" class="text-default">비밀번호</label>
                                 <input type="password" class="form-control" id="input-password" name="password" placeholder="영문, 숫자 6~14">
                                 <div id="check-pwd"></div>
                             </div>

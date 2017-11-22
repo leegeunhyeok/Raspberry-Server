@@ -1,13 +1,17 @@
+'use strict';
 var os = require('os');
 
+/* Get free memory */
 function freemem(callback){
     callback(os.freemem() / (1024 * 1024));
 }
 
+/* Get total memory */
 function totalmem(callback){
     callback(os.totalmem() / (1024 * 1024));
 }
 
+/* Get memory usage */
 function memUsage(){
     return ((1 - (os.freemem() / os.totalmem())) * 100).toFixed(2);
 }
@@ -15,6 +19,7 @@ function memUsage(){
 exports.freemem = freemem;
 exports.totalmem = totalmem;
 
+/* Get cpu, memory info */
 function totalGet(callback){
     var stat1 = getCPU(); 
     var idle1 = stat1.idle;
@@ -37,6 +42,7 @@ function totalGet(callback){
     }, 1000);
 }
 
+/* Get cpu usage */
 function getCPUUsage(){
     var stat1 = getCPU(); 
     var idle1 = stat1.idle;
@@ -54,6 +60,7 @@ function getCPUUsage(){
     }, 1000);
 }
 
+/* Get cpu(s) info */
 function getCPU(){
     var cpu = os.cpus();
     

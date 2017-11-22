@@ -1,0 +1,30 @@
+2017-11-22 21:38:22.750 +0900 [info] Server starting..
+2017-11-22 21:38:22.754 +0900 [info] Raspberry PI Server is running > port: 8080
+2017-11-22 21:38:22.755 +0900 [info] Connecting database..
+2017-11-22 21:38:22.772 +0900 [info] Router initialization complete
+2017-11-22 21:38:22.818 +0900 [info] Socket module ready
+2017-11-22 21:38:23.826 +0900 [error] Database connection error
+2017-11-22 21:38:28.827 +0900 [info] Connecting database..
+2017-11-22 21:38:29.840 +0900 [error] Database connection error
+2017-11-22 21:38:29.841 +0900 [error] Database connection error
+2017-11-22 21:38:33.838 +0900 [info] Connecting database..
+2017-11-22 21:38:34.843 +0900 [info] Connecting database..
+2017-11-22 21:38:34.846 +0900 [info] Connecting database..
+2017-11-22 21:38:34.854 +0900 [error] Database connection error
+2017-11-22 21:38:34.857 +0900 [error] Database connection error
+2017-11-22 21:38:34.858 +0900 [error] Database connection error
+2017-11-22 21:38:34.861 +0900 [error] Database connection error
+2017-11-22 21:38:34.862 +0900 [error] Database connection error
+2017-11-22 21:38:35.875 +0900 [error] Database connection error
+2017-11-22 21:38:35.876 +0900 [error] Database connection error
+2017-11-22 21:38:35.877 +0900 [error] Database connection error
+2017-11-22 21:38:35.887 +0900 [error] Database connection error
+2017-11-22 21:38:35.887 +0900 [error] Database connection error
+2017-11-22 21:38:35.889 +0900 [error] Database connection error
+2017-11-22 21:38:35.889 +0900 [error] Database connection error
+2017-11-22 21:38:35.889 +0900 [error] Database connection error
+2017-11-22 21:38:35.889 +0900 [error] Database connection error
+2017-11-22 21:38:35.889 +0900 [error] Database connection error
+2017-11-22 21:38:38.842 +0900 [info] Connecting database..
+2017-11-22 21:38:39.846 +0900 [info] Connecting database..
+2017-11-22 21:38:39.852 +0900 [error] Database connection error

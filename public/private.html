@@ -10,6 +10,12 @@
     <body>
         <form action="/process/addUser" method="post">
             <input type="text" name="name" placeholder="이름"><br>
+            <input type="number" class="form-control" id="input-age" name="age">
+            <select name="sex" class="form-control">
+                <option value="0">남</option>
+                <option value="1">여</option>
+                <option value="-1">기타</option>
+            </select>
             <input type="email" name="id" id="input-id" placeholder="E-Mail">
             <button type="button" id="id-check">중복확인</button><br>
             <input type="password" name="password" placeholder="Password"><br>

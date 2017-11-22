@@ -4,6 +4,10 @@ body {
     font-family: 'Hanna', serif;
 }
 
+#main-btn {
+    margin-bottom: 50px;
+}
+
 #status {
     margin: auto;
     width: 75%;

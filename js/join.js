@@ -1,9 +1,10 @@
 $(function(){
     var resultName = $('#check-name');
+    var resultAge = $('#check-age');
     var resultId = $('#check-id');
     var resultPwd = $('#check-pwd');
     var checkBtn = $('#id-check');
-    var nameCheck = false, idCheck = false, passwordCheck = false;
+    var nameCheck = false, ageCheck = false, idCheck = false, passwordCheck = false;
     
     $('#back-btn').click(function(){
         location.href = "/"; 
@@ -11,7 +12,7 @@ $(function(){
     
     $('#input-name').change(function(){
         var regExp = /^[가-힣a-zA-Z]{2,6}$/;
-        var data = $('#input-name').val();
+        var data = $(this).val();
         resultName.removeClass('text-success text-danger');
         
         if(data.match(regExp)){
@@ -23,7 +24,23 @@ $(function(){
             resultName.addClass('text-danger');
             resultName.html('사용할 수 없습니다');
         }
+        checkAll();
+    });
+    
+    $('#input-age').change(function(){
+        var regExp = /^([0-9]|[1-9][0-9])$/;
+        var data = $(this).val();
+        resultAge.removeClass('text-success text-danger');
         
+        if(data.match(regExp)){
+            ageCheck = true;
+            resultAge.addClass('text-success');
+            resultAge.html('사용 가능합니다');
+        } else {
+            ageCheck = false;
+            resultAge.addClass('text-danger');
+            resultAge.html('사용할 수 없습니다');
+        }
         checkAll();
     });
     
@@ -64,7 +81,6 @@ $(function(){
             resultPwd.addClass('text-danger');
             resultPwd.html('사용할 수 없습니다');
         }
-        
         checkAll();
     });
     
@@ -93,7 +109,7 @@ $(function(){
     });
     
     function checkAll(){
-        if(nameCheck && idCheck && passwordCheck){
+        if(nameCheck && ageCheck && idCheck && passwordCheck){
             $('#submit').prop('disabled', false);
             $('#submit').addClass('btn-primary');
         } else {

@@ -3,13 +3,12 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
-        <title>Rastro 관리자 페이지</title>
+        <title>Rastro 통계</title>
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="c3/c3.css" rel="stylesheet">
-        <link href="css/admin.css" rel="stylesheet">
+        <link href="css/info.css" rel="stylesheet">
         <script src="js/jquery-3.2.1.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
-        <script src="/socket.io/socket.io.js"></script>
     </head>
     <body>
         <div class="container">
@@ -20,18 +19,17 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <div class="text-center">
-                            <h3>서버관리</h3>
+                            <h3>유저 통계</h3>
                         </div>
                     </div>
                     <div class="panel-body">
-                        <h3 class="text-center">CPU</h3>
-                        <div id="cpu">
+                        <div id="age">
+                            <h3 class="text-center">연령 데이터를 불러오는 중 입니다..</h3>
                             <!-- C3 Chart -->
                         </div>
                         <br>
-                        <hr>
-                        <h3 class="text-center">Memory</h3>
-                        <div id="memory">
+                        <div id="sex">
+                            <h3 class="text-center">성별 데이터를 불러오는 중 입니다..</h3>
                             <!-- C3 Chart -->
                         </div>
                     </div>
@@ -43,6 +41,6 @@
         </div>
         <script src="d3/d3.min.js"></script>
         <script src="c3/c3.min.js"></script>
-        <script src="js/admin.js"></script>
+        <script src="js/info.js"></script>
     </body>
 </html>

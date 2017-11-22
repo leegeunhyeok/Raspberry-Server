@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
         <title>파일공유</title>
         <link href="css/bootstrap.min.css" rel="stylesheet">
-        <link href="css/join.css" rel="stylesheet">
+        <link href="css/share.css" rel="stylesheet">
     </head>
     <body>
         <div class="container">
@@ -36,6 +36,7 @@
                                 <tr>
                                     <th>#</th>
                                     <th>파일명</th>
+                                    <th>비고</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -43,8 +44,12 @@
                                 var temp = files[i] 
                                 var dir = '/files/' + temp %>
                                 <tr>
-                                    <td> <%= i+1 %> </td>
-                                    <td> <a href="<%= dir %>" download> <%= temp %> </a> </td>
+                                    <td><%= i+1 %></td>
+                                    <td><a href="<%= dir %>" download> <%= temp %> </a></td>
+                                    <td><a href="<%= dir %>">웹에서 보기</a></td>
+                                    <% if(permission == 'admin'){ %>
+                                    <td><button class="btn btn-sm btn-danger del-btn" name="<%= temp %>">삭제</button></td>
+                                    <% } %>
                                 </tr> 
                                 <% } %>
                             </tbody>
@@ -55,5 +60,6 @@
         </div>
         <script src="js/jquery-3.2.1.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
+        <script src="js/share.js"></script>
     </body>
 </html>

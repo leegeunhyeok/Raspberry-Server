@@ -1,0 +1,30 @@
+2017-11-22 22:42:07.286 +0900 [info] Server starting..
+2017-11-22 22:42:07.290 +0900 [info] Raspberry PI Server is running > port: 8080
+2017-11-22 22:42:07.291 +0900 [info] Connecting database..
+2017-11-22 22:42:07.310 +0900 [info] Router initialization complete
+2017-11-22 22:42:07.355 +0900 [info] Socket module ready
+2017-11-22 22:42:07.373 +0900 [info] Database Connected [mongodb://localhost:27017/rastro]
+2017-11-22 22:42:07.388 +0900 [info] User schema and model defined
+2017-11-22 22:42:12.696 +0900 [info] Administrator login [1@1]
+2017-11-22 22:42:17.113 +0900 [info] Removing file.. target: ./files/test.txt
+2017-11-22 22:42:17.114 +0900 [info] ./files/test.txt was removed
+2017-11-22 22:43:04.414 +0900 [info] 20171122_224304_temp.txt uploaded by 1@1
+2017-11-22 22:43:09.592 +0900 [info] Removing file.. target: ./files/20171122_224304_temp.txt
+2017-11-22 22:43:09.593 +0900 [info] ./files/20171122_224304_temp.txt was removed
+2017-11-22 22:43:35.692 +0900 [info] 20171122_224335_temp.txt uploaded by 1@1
+2017-11-22 22:43:38.011 +0900 [info] Removing file.. target: ./files/20171122_224335_temp.txt
+2017-11-22 22:43:38.014 +0900 [info] ./files/20171122_224335_temp.txt was removed
+2017-11-22 22:44:02.918 +0900 [info] 20171122_224402_temp.txt uploaded by 1@1
+2017-11-22 22:44:07.993 +0900 [info] 20171122_224407_KakaoTalk_20171122_175343137.jpg uploaded by 1@1
+2017-11-22 22:44:28.446 +0900 [info] Removing file.. target: ./files/20171122_224402_temp.txt
+2017-11-22 22:44:28.447 +0900 [info] ./files/20171122_224402_temp.txt was removed
+2017-11-22 22:44:42.653 +0900 [info] Removing file.. target: ./files/20171122_224407_KakaoTalk_20171122_175343137.jpg
+2017-11-22 22:44:42.654 +0900 [info] ./files/20171122_224407_KakaoTalk_20171122_175343137.jpg was removed
+2017-11-22 22:44:49.258 +0900 [info] 20171122_224449_temp.txt uploaded by 1@1
+2017-11-22 22:45:02.667 +0900 [info] 20171122_224502_세상을 바꿀 테크놀로지_최종.pptx uploaded by 1@1
+2017-11-22 22:45:08.427 +0900 [info] 20171122_224508_temp.PNG uploaded by 1@1
+2017-11-22 22:45:37.531 +0900 [info] Removing file.. target: ./files/20171122_224508_temp.PNG
+2017-11-22 22:45:37.533 +0900 [info] ./files/20171122_224508_temp.PNG was removed
+2017-11-22 22:45:39.187 +0900 [info] Removing file.. target: ./files/20171122_224449_temp.txt
+2017-11-22 22:45:39.188 +0900 [info] ./files/20171122_224449_temp.txt was removed
+2017-11-22 22:45:40.391 +0900 [info] Removing file.. target: ./files/20171122_224502_세상을 바꿀 테크놀로지_최종.pptx

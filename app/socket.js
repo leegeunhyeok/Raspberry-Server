@@ -1,8 +1,11 @@
-var os = require('./monitor.js');
+'use strict';
+var os = require('./monitor');
 
-module.exports = function(server){
-    var userlist = {};
+exports.init = function(server, app){
+    var userlist = {}; // Connected user list
     var io = require('socket.io').listen(server);
+    var logger = app.get('logger');
+    logger('Socket module ready', 1);
     
     /* Chat socket */
     io.sockets.on('connection', function(socket){
@@ -18,9 +21,10 @@ module.exports = function(server){
             userlist[id] = name;
             io.sockets.emit('update', 'SERVER', 'SERVER_CONNECT', name + '(' + id + ') 님이 접속하였습니다.');
             io.sockets.emit('update-users', userlist);
-            console.log(name + '(' + id + ')' + ' has connected');
+            logger(name + '(' + id + ')' + ' has connected', 1);
         });
         
+        // Admin page
         socket.on('request', function(){
             os.cpumem(function(data){
                 io.sockets.emit('response', data);
@@ -30,12 +34,12 @@ module.exports = function(server){
         socket.on('disconnect', function(){
             var temp = userlist[socket.id];
             
-            if(temp != undefined){
+            if(temp != undefined){ // Only chat(Not admin page)
                 delete userlist[socket.id];
                 io.sockets.emit('update-users', userlist);
                 socket.broadcast.emit('update', 'SERVER', 'SERVER_DISCONNECT', 
                 socket.name + '(' + socket.id + ') 님이 연결을 종료하였습니다.');
-                console.log(socket.name + '(' + socket.id + ')' + ' was disconnected');
+                logger(socket.name + '(' + socket.id + ')' + ' was disconnected', 1);
             }
         });
     });

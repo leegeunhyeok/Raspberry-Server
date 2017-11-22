@@ -10,6 +10,15 @@
 
 ## ChangeLog
 
+### 2017-11-23
+* Add user statistics(age, sex with c3)
+* Add logger (Console color, save logfile)
+* Add delete file button (File share, Only admin)
+* Change user schema (Add age, sex)
+* Change admin page(Graph type: Bar -> Gauge)
+* Split js file (Router, Database)
+* Minor bug fix
+
 ### 2017-11-21
 * Add admin page (Server monitoring)
 * Use C3(D3)

@@ -1,15 +1,19 @@
+'use strict';
 var crypto = require('crypto');
 
 var Schema = {};
 
+/* Create mongoose schema */
 Schema.createSchema = function(mongoose) {
     var userSchema = mongoose.Schema({
-        name: {type: String, required: true, 'default':' '},
-        id: {type: String, required: true, 'default':' '},
-        hashed_password: {type: String, required: true, 'default':' '},
+        id: {type: String, required: true, unique: true},
+        hashed_password: {type: String, required: true}, // Crypted password
         salt: {type: String, required: true},
+        name: {type: String, required: true},
+        age: {type: Number, required: true},
+        sex: {type: Number, required: true}, // Man: 0, Woman: 1, Other: -1
         permission: {type: String, required: true},
-        register: {type: Date, index : {unique: false}, 'default' : Date.now}
+        register: {type: Date, 'default' : Date.now}
     });
     
     userSchema.virtual('password').set(function(password){

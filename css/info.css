@@ -1,0 +1,36 @@
+@import url(http://fonts.googleapis.com/earlyaccess/hanna.css);
+
+body {
+    font-family: 'Hanna', serif;
+    font-size: 20px;
+}
+
+.container {
+    margin-top: 100px;
+}
+
+.modal-body {
+    padding: 35px;
+}
+
+#main-btn {
+    margin-bottom: 50px;
+}
+
+@media (min-width: 768px) {
+    .container {
+        width: 700px;
+    }
+}
+
+@media (min-width: 992px) {
+    .container {
+        width: 600px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .container {
+        width: 700px;
+    }
+}

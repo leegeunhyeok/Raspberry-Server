@@ -37,5 +37,9 @@ $(function(){
     $('#portfolio-btn').click(function(){
         location.href = '/portfolio';
     });
+    
+    $('#info-btn').click(function(){
+        location.href = '/info';
+    });
 });
 

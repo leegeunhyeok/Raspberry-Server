@@ -11,7 +11,7 @@
     <body>
         <div class="container">
             <center>
-                <img src="image/logo.png">
+                <a href="/"><img src="image/logo.png"></a>
             </center>
             <div class="panel panel-default">
                 <div class="panel-heading">
@@ -21,6 +21,20 @@
                     <div class="text-center">
                         <b>[ 이름 ]</b> 
                         <div class="text-info"><%= name %></div>
+                        <br>
+                        <b>[ 나이 및 성별 ]</b> 
+                        <div class="text-info">
+                            <div>
+                            <%= age %>세, 
+                            <% if(age == 0) { %>
+                                남
+                            <% } else if(age == 1) { %>
+                                여
+                            <% } else { %>
+                                기타
+                            <% } %>
+                            </div>
+                        </div>
                         <br>
                         <b>[ 이메일 ]</b>
                         <div class="text-info"><%= id %></div>
