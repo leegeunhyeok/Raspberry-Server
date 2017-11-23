@@ -9,7 +9,7 @@ var temp_cpu = 0;
 var temp_memory = 0;
 
 var color = ['#b8f9b3', '#fafe92', '#f9c28a', '#ff8c8c'];
-var values = [35, 50, 65, 80];
+var values = [40, 60, 80];
 
 socket.on('connect', function(){
     setInterval(function(){
@@ -102,8 +102,67 @@ function load(){
 
 $(function(){
     init();
+    getLog();
     
     $('#main-btn').click(function(){
         location.href = '/'; 
     });
+    
+    $('#get-log').click(function(){
+        getLog();
+    });
+    
+    $('#force-save-log').click(function(){
+        $.ajax({
+            url: '/private/forceSave',
+            type: 'POST',
+            data: {},
+            dataType: 'JSON',
+            success: function(data){
+                $('#log-area').html('');
+                if(data){
+                    alert('저장 성공!');
+                } else {
+                    alert('저장 실패');
+                }
+            }
+        });
+    });
+    
+    
+    $('#rm-log').click(function(){
+        $.ajax({
+            url: '/private/removeLog',
+            type: 'POST',
+            data: {},
+            dataType: 'JSON',
+            success: function(data){
+                if(data){
+                    alert('삭제 됨');
+                } else {
+                    alert('삭제 실패');
+                }
+            }
+        });
+    });
 });
+
+function getLog(){
+    $.ajax({
+        url: '/private/getLog',
+        type: 'POST',
+        data: {},
+        dataType: 'JSON',
+        success: function(result){
+            var data = result.data;
+            if(data){
+                $('#log-area').html(data.log);
+                $('#cycle').html('Log Cycle [' + data.cycle + '] Lines');
+            } else if(result === 0) {
+                alert('로그가 없습니다');
+            } else {
+                $('#log-area').html('Failed to get log data');
+            }
+        }
+    });
+}

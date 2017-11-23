@@ -34,6 +34,30 @@
                         <div id="memory">
                             <!-- C3 Chart -->
                         </div>
+                        <br>
+                        <hr>
+                        <div id="log">
+                            <h2 class="text-center"><span class="label label-default">로그</span></h2>
+                            <textarea id="log-area" class="form-control" style="resize: none;" rows="20" readonly>
+                                
+                            </textarea>
+                            <br>
+                            <center>
+                                <div id="cycle"></div>
+                                <div class="btn-group">
+                                    <button id="get-log" class="btn btn-success">불러오기</button>
+                                    <button id="force-save-log" class="btn btn-warning">강제저장</button>
+                                    <button id="rm-log" class="btn btn-danger">로그파일 삭제</button>
+                                </div>
+                            </center>
+                        </div>
+                        <br>
+                        <hr>
+                        <div>
+                            <ul id="saved-log" class="list-group">
+                                <!-- <li class="list-group-item"></li> -->
+                            </ul>
+                        </div>
                     </div>
                     <div class="text-center">
                         <button id="main-btn" class="btn btn-default">메인으로</button>

@@ -1,0 +1,66 @@
+@import url(http://fonts.googleapis.com/earlyaccess/hanna.css);
+
+body {
+    font-family: 'Hanna', serif;
+    font-size: 20px;
+}
+
+img {
+    border: 1px solid gray;
+}
+
+p {
+    font-size: 18px;
+}
+
+.container-fluid {
+    padding: 0;
+}
+
+.sm-font {
+    font-size: 20px;
+}
+
+.lg-font {
+    font-size: 60px;
+}
+
+.black {
+    background-color: black;
+}
+
+.white {
+    background-color: white;
+}
+
+.board {
+    padding: 5px;
+    margin: 10px;
+    height: 480px;
+    border-radius: 5px;
+    background-color: #eeeeee;
+}
+
+.row {
+    padding: 0;
+    margin: 0;
+}
+
+.info {
+    margin-top: 10px;
+}
+
+#header {
+    padding-top: 50px;
+    padding-bottom: 50px;
+    background-color: #8cc04b;
+    color: white;
+}
+
+#main {
+    background-color: #c7053d;
+}
+
+#bottom-btn {
+    margin: 20px;
+}

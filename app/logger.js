@@ -3,7 +3,7 @@ var moment = require('moment'),
     fs = require('fs'),
     os = require('os');
 
-var cycle = 30, //default: 30
+var cycle = 50, //default: 50
     count = 0,
     temp_log = '';
 
@@ -21,6 +21,9 @@ const level = {
     5: ['[danger]', '\x1b[31m'] // Red 5
 }
 
+/* Log file dir */
+const dir = './log/';
+
 /* Time format */
 function timeStamp() {
     return moment().format('YYYY-MM-DD HH:mm:ss.SSS ZZ');
@@ -32,8 +35,8 @@ function logTimeStamp() {
 }
 
 /* Save log file */
-function saveLogfile(){
-    var name = './log/' + logTimeStamp(); // Dir and file name
+function saveLogfile(force){
+    var name = dir + logTimeStamp(); // Dir and file name
     fs.writeFile(name, temp_log, 'utf8', function(err){
         temp_log = ''; // temp_log init
         
@@ -42,16 +45,53 @@ function saveLogfile(){
             log(err, 4);
             return;
         } 
-        log('Log saved [' + name + ']', 1);
-        log('Log count: ' + count, 1);
+        
+        var msg = 'Log saved [' + name + ']';
+        msg = force ? msg + ' -force' : msg; 
+        
+        log(msg, 1);
+        log('Log count: ' + (count+1), 1);
     });
 }
 
-/* Message, level, option(false: default, true: Don't save temp_log) */
-function log(msg, lv, force){
+/* Remove all log file */
+function removeAllLog(){
+    fs.readdir(dir, function(err, files){
+        if(err) {
+            log(err, 4);
+        } else {
+            for(var f in files){
+                fs.unlink(dir + files[f], function(err){
+                    if(err) {
+                        log(err, 4);
+                    } 
+                });
+            }
+        }
+    });
+}
+
+/* Message, level, MSG OPTION:(f: force save, c: clear count, g: get logdata, s: set sycle, r: remove all logfile) */
+function log(msg, lv){
     if(msg == undefined || msg == null) return;
-    force == undefined ? false : true;
     
+    if(msg == 'f') {
+        count = 0;
+        saveLogfile(true);
+        return;
+    } else if(msg == 'c') {
+        count = 0;
+        return;
+    } else if(msg == 'g') {
+        return {log:temp_log, count: count, cycle: cycle};
+    } else if(msg == 's') {
+        cycle = (lv != undefined && lv >= 10) ? 10 : lv;
+        return;
+    } else if(msg == 'r') {
+        removeAllLog();
+        return;
+    }
+
     var temp = level[lv];
     var time = timeStamp();
     count++;
@@ -64,33 +104,9 @@ function log(msg, lv, force){
     }
     
     temp_log += time + ' ' + temp[type] + ' ' + msg + os.EOL; // Save log data
-    if(count % cycle == 0 && !force) {
-        saveLogfile(); // Log data save
+    if(count % cycle == 0) {
+        saveLogfile(false); // Log data save
     }
-}
-
-/* Change cycle */
-exports.setLogCycle = function(num){
-    log('Log Cycle changed' + count + '>' + num);
-    count = num;
-}
-
-/* Get temp_log */
-exports.getLog = function(){
-    return temp_log;
-}
-
-/* Get log count */
-exports.getLogCount = function(){
-    return count;
-}
-
-/* Force save logfile */
-exports.forceSave = function(){
-    count = 0;
-    log('Force save logfile', 1, true);
-    log('Reset log count', 3, true);
-    saveLogfile();
 }
 
 module.exports = log;

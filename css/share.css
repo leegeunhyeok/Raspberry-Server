@@ -2,27 +2,45 @@
 
 body {
     font-family: 'Hanna', serif;
-    font-size: 16px;
 }
 
 .invisible {
     visibility: hidden;
 }
 
+.btn-group {
+    width: 100%;
+}
+
 @media (min-width: 768px) {
     .container {
-        width: 700px;
+        width: 95%;
+        font-size: 8px;
+    }
+    
+    .filename {
+        width: 10px;
     }
 }
 
 @media (min-width: 992px) {
     .container {
-        width: 600px;
+        width: 80%;
+        font-size: 18px;
+    }
+    
+    .filename {
+        width: 10px;
     }
 }
 
 @media (min-width: 1200px) {
     .container {
-        width: 700px;
+        width: 80%;
+        font-size: 16px;
+    }
+    
+    .filename {
+        width: 10px;
     }
 }

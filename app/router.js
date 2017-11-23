@@ -129,9 +129,9 @@ function deluser(req, res){
 
 // File upload
 function upload(req, res){
-    var file = req.files;
+    var file = req.file;
     if(file){   
-        logger(file[0].filename + ' uploaded by ' + req.session.user.id, 1);
+        logger(file.filename + ' uploaded by ' + req.session.user.id, 1);
         res.send("<script>alert('업로드가 완료되었습니다');location.href='/share'</script>");
     } else {
         res.send("<script>alert('업로드 실패');location.href='/share'</script>");
@@ -180,20 +180,41 @@ exports.process = {
 /*-----  Private route  -----*/
 // Add new admin
 function addadmin(req, res){
-    fs.readFile('public/private.html', function(err, data){
-        if(err){
-            logger(err, 4);
-            res.send("<script>alert('서버에 문제가 발생하였습니다');location.href='/'</script>");
-        } else {
-            res.writeHead(200, {'Content-Type':'text/html'});
-            res.write(data);
-        }
-        res.end();
-    });
+    sendHtml('public/private.html', req, res);
 };
 
+// Get temp log
+function getlog(req, res){
+    var logdata = logger('g');
+    if(logdata.count <= 0){
+        res.send({data: 0});
+        return;
+    }
+        
+    if(logdata){
+        res.send({data: logdata});
+    } else {
+        res.send({data: null});   
+    }
+}
+
+// Force save logfile
+function forcesave(req, res){
+    logger('f');
+    res.send({data: 1});
+}
+
+// rm all log files
+function removelog(req, res){
+    logger('r');
+    res.send({data: 1});
+}
+
 exports.private = {
-    addadmin: addadmin
+    addadmin: addadmin,
+    getlog: getlog,
+    forcesave: forcesave,
+    removelog: removelog
 }
 
 
@@ -213,16 +234,7 @@ function join(req, res){
 	if(req.session.user){
 		res.redirect('/');
 	} else {
-		fs.readFile('public/join.html', function(err, data){
-            if(err){
-                logger(err, 4);
-                res.send("<script>alert('서버에 문제가 발생하였습니다');location.href='/'</script>");
-            } else {
-                res.writeHead(200, {'Content-Type':'text/html'});
-                res.write(data);
-            }
-            res.end();
-        });
+        sendHtml('public/join.html', req, res);
 	}
 };
 
@@ -270,21 +282,12 @@ function share(req, res){
 
 // Poerfolio
 function portfolio(req, res){
-    res.send("<script>alert('아직 구현되지 않은 페이지 입니다');location.href='/'</script>");
+    sendHtml('public/portfolio.html', req, res);
 };
 
 // Web page info
 function info(req, res){
-    fs.readFile('public/info.html', function(err, data){
-        if(err){
-            logger(err, 4);
-            res.send("<script>alert('서버에 문제가 발생하였습니다');location.href='/'</script>");
-        } else {
-            res.writeHead(200, {'Content-Type':'text/html'});
-            res.write(data);
-        }
-        res.end();
-    });
+    sendHtml('public/info.html', req, res);
 };
 
 // Admin page
@@ -298,21 +301,25 @@ function admin(req, res){
     
     var permission = sess.permission; 
     if(permission == 'admin'){
-        fs.readFile('public/admin.html', function(err, data){
-            if(err){
-                logger(err, 4);
-                res.send("<script>alert('서버에 문제가 발생하였습니다');location.href='/'</script>");
-            } else {
-                res.writeHead(200, {'Content-Type':'text/html'});
-                res.write(data);
-            }
-            res.end();
-        });
+        sendHtml('public/admin.html', req, res);
     } else {
         logger('Admin page access denied', 3);
         res.send("<script>alert('액세스가 거부되었습니다');location.href='/'</script>");
     }
 };
+
+function sendHtml(dir, req, res){
+    fs.readFile(dir, function(err, data){
+        if(err){
+            logger(err, 4);
+            res.send("<script>alert('서버에 문제가 발생하였습니다');location.href='/'</script>");
+        } else {
+            res.writeHead(200, {'Content-Type':'text/html'});
+            res.write(data);
+        }
+        res.end();
+    });
+}
 
 exports.page = {
     root: root,

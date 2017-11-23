@@ -10,7 +10,17 @@
 
 ## ChangeLog
 
-### 2017-11-23
+### 2017-11-23.2
+* Basic logic is done!!!
+* Logger code fix
+* Router code fix
+* User express-error-handler
+* Add error page (404)
+* Add portfolio page
+* Add show log, log option(load, force save, delete) at admin page
+* Change layout (File share page)
+
+### 2017-11-23.1
 * Add user statistics(age, sex with c3)
 * Add logger (Console color, save logfile)
 * Add delete file button (File share, Only admin)
@@ -41,11 +51,11 @@
 * Add more info
 
 
-### 2017-11-12
+### 2017-11-12.2
 * Add user chat 
 
 
-### 2017-11-12
+### 2017-11-12.1
 * Password encryption
 * Split file (user-schema) 
 

@@ -82,6 +82,9 @@ function init(){
                     }
                 });
             }
+        }, 
+        error: function(req, status, err){
+            alert(err);
         }
     });
 }

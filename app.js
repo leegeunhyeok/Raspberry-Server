@@ -8,7 +8,8 @@
  *--------------------------*/
 'use strict';
 var express = require('express'),
-	http = require('http');
+	http = require('http'),
+    errorHandler = require('express-error-handler');
 
 var path = require('path'),
 	serv_static = require('serve-static');
@@ -41,6 +42,7 @@ app.use('/files', serv_static(path.join(__dirname, 'files')));
 app.use('/c3', serv_static(path.join(__dirname, 'js/c3')));
 app.use('/d3', serv_static(path.join(__dirname, 'js/d3')));
 
+app.use(upload);
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
@@ -58,11 +60,14 @@ router.route('/process/idCheck').post(route.process.idcheck);
 router.route('/process/addUser').post(route.process.adduser);
 router.route('/process/change').post(route.process.change);
 router.route('/process/delete').post(route.process.delete);
-router.route('/process/upload').post(upload.array('file', 1), route.process.upload);
+router.route('/process/upload').post(route.process.upload);
 router.route('/process/removeFile').post(route.process.removefile);
 router.route('/process/getStatistics').post(route.process.statistics);
 
 router.route('/private/addAdmin').get(route.private.addadmin);
+router.route('/private/getLog').post(route.private.getlog);
+router.route('/private/forceSave').post(route.private.forcesave);
+router.route('/private/removeLog').post(route.private.removelog);
 
 router.route('/').get(route.page.root);
 router.route('/join').get(route.page.join);
@@ -73,6 +78,16 @@ router.route('/portfolio').get(route.page.portfolio);
 router.route('/info').get(route.page.info);
 router.route('/admin').get(route.page.admin);
 app.use(router);
+
+/* Error handler */
+var handler = errorHandler({
+    static: {
+        '404':'./public/error_404.html'
+    } 
+});
+
+app.use(errorHandler.httpError(404));
+app.use(handler);
 
 /* Create server */
 http.createServer(app).listen(app.get('port'), function(){

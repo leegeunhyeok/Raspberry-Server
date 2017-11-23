@@ -30,30 +30,24 @@
                             <% } %>
                         </div>
                     </div>
-                    <div class="panel-body">
-                        <table class="table table-hover">
-                            <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>파일명</th>
-                                    <th>비고</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <% for(var i=0; i<files.length; i++){ 
-                                var temp = files[i] 
-                                var dir = '/files/' + temp %>
-                                <tr>
-                                    <td><%= i+1 %></td>
-                                    <td><a href="<%= dir %>" download> <%= temp %> </a></td>
-                                    <td><a href="<%= dir %>">웹에서 보기</a></td>
+                    <div class="panel-body"> 
+                        <ul class="list-group">
+                            <% for(var i=0; i<files.length; i++){ 
+                            var temp = files[i] 
+                            var dir = '/files/' + temp %>
+                            <li class="list-group-item">
+                                <center>
+                                <h2><span class="label label-lg label-default"><%= temp %></span></h2>
+                                    <a href="<%= dir %>" download class= "btn btn-primary">다운로드</a>
+                                    <a href="<%= dir %>" class= "btn btn-warning">웹에서 보기</a>
                                     <% if(permission == 'admin'){ %>
-                                    <td><button class="btn btn-sm btn-danger del-btn" name="<%= temp %>">삭제</button></td>
+                                    <button class="btn btn-danger del-btn" name="<%= temp %>">삭제</button>
                                     <% } %>
-                                </tr> 
-                                <% } %>
-                            </tbody>
-                        </table>
+                                </center>
+                                <br>
+                            </li>
+                        <% } %>
+                        </ul>
                     </div>
                 </div>
             </div>

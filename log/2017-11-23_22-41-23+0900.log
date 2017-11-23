@@ -1,0 +1,8 @@
+2017-11-23 22:38:11.457 +0900 [info] Server starting..
+2017-11-23 22:38:11.461 +0900 [info] Raspberry PI Server is running > port: 8080
+2017-11-23 22:38:11.461 +0900 [info] Connecting database..
+2017-11-23 22:38:11.479 +0900 [info] Router initialization complete
+2017-11-23 22:38:11.526 +0900 [info] Socket module ready
+2017-11-23 22:38:11.543 +0900 [info] Database Connected [mongodb://localhost:27017/rastro]
+2017-11-23 22:38:11.558 +0900 [info] User schema and model defined
+2017-11-23 22:41:17.145 +0900 [info] Administrator login [1@1]

@@ -1,0 +1,21 @@
+@import url(http://fonts.googleapis.com/earlyaccess/hanna.css);
+
+body {
+    font-family: 'Hanna', serif;
+    font-size: 20px;
+}
+
+.container {
+    margin-top: 50px;
+}
+
+.board {
+    padding: 100px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 2px 2px lightgray;
+    background-color: white;
+}
+
+.err-code {
+    font-size: 60px;
+}

@@ -91,9 +91,8 @@ $(function(){
             url: '/process/idCheck',
             type: 'POST',
             data: {'id' : id},
-            dataType: 'html',
+            dataType: 'JSON',
             success: function(data){
-                data = JSON.parse(data);
                 if(data.result == true){
                     idCheck = true;
                     resultId.html('사용 가능한 이메일입니다');
@@ -104,6 +103,8 @@ $(function(){
                     resultId.html('이미 존재하는 이메일입니다');
                     resultId.removeClass('text-success').addClass('text-danger');
                 }
+            }, error: function(err){
+                alert(err);
             }
         });
     });
